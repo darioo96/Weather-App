@@ -10,6 +10,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1 className='title'>Weather App</h1>
       <Form setWeatherInfo = {setWeatherInfo}/>
       <Info weatherInfo={weatherInfo}/>
     </div>

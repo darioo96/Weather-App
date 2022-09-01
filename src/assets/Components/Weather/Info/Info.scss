@@ -1,0 +1,18 @@
+.info_weather {
+    width: 60%;
+    height: 50%;
+    background-color: rgba(40, 58, 58, 0.346);
+    border-radius: 15px;
+    padding: 20px;
+    & .temp {
+        font-size: 10vw;
+        font-family: 'Antonio', sans-serif;
+    }
+    & .icon {
+        position: absolute;
+        bottom: 0;
+        background-color: black;
+        width: 10vw;
+        height: 10vw;
+    }
+}
