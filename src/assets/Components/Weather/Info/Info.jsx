@@ -1,27 +1,39 @@
-import React from "react";
 import "./Info.scss";
 
 function Info({ weatherInfo }) {
   console.log(weatherInfo)
-  const respWeather = (weatherInfo.cod === '404') ? 
-  [(
-    <section className="info_weather">
-      <h1 key={weatherInfo.cod}>{weatherInfo.message}</h1>
-    </section>
-  )]:
-  [(
-    <section className="info_weather">
-      <p className="localizacion"><h3>{weatherInfo.ciudad}, </h3><h4>{weatherInfo.pais}</h4></p>
-      <p className="temp">{weatherInfo.temp}</p>
-      <picture className="icon">sfd</picture>
-    </section>
-  )]
+  const respWeather = () => {
+    if(weatherInfo.cod == 200){
+      return (
+        <section className="info_weather">
 
-  return (
-    <>
-      {respWeather}
-    </>
-  );
+          <div className="temp" >
+            <picture style={{backgroundImage: `url(./src/assets/Media/Icons/${weatherInfo.icon}.svg)`}}></picture>
+            <p className="info_temp">{Math.round(weatherInfo.temp)}ºc</p>
+            <p className="descripcion">{weatherInfo.descripcion}</p>
+          </div>
+
+          <div className="info">
+            <h4 className="data">{weatherInfo.ciudad}, {weatherInfo.pais}</h4>
+            <h4 className="data">Max: {Math.round(weatherInfo.temp_max)}ºc / Min: {Math.round(weatherInfo.temp_min)}ºc</h4>
+            <h4 className="data">Humedad: {weatherInfo.humedad}%</h4>
+            <h4 className="data">Viento: {weatherInfo.vel_viento} Km/h</h4>
+
+          </div>
+
+        </section>
+      );
+    } else {
+      return (
+        <section className="info_weather">
+          <h1>{weatherInfo.message}</h1>
+          <picture className="error_404"></picture>
+        </section>
+      );
+    }
+  };
+
+  return respWeather()
 }
 
 export default Info;
